@@ -31,6 +31,25 @@
             </div>
         </div>
 
+        @if(Auth::user()->unreadNotifications->count())
+        <div class="ui floating dropdown item">
+            <i class="bell outline icon"></i>
+            <div class="menu">
+                @foreach(Auth::user()->unreadNotifications as $notification)
+                @include('notifications/' . $notification->data['template'])
+                @endforeach
+
+                <div class="ui divider"></div>
+
+                <a href="{{ route('notifications.readAll') }}" onclick="event.preventDefault(); $('#notification-form').submit();" class="ui item">Mark notifications as read</a>
+
+                <form id="notification-form" action="{{ route('notifications.readAll') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        </div>
+        @endif
+
         <a href="{{ route('users.show', Auth::user()) }}" class="ui item">
             <strong>
                 {{ '@' }}{{ Auth::user()->handle }}

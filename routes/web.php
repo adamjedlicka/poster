@@ -24,3 +24,5 @@ Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
 Route::patch('/users/{user}', 'UserController@update')->name('users.update');
 
 Route::post('/follow/{user}', 'FollowController@follow')->name('follow');
+
+Route::post('/notifications/read', 'NotificationController@readAll')->name('notifications.readAll');
