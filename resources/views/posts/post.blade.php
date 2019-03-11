@@ -13,7 +13,7 @@
             <span class="date">{{ $post->created_at->diffForHumans() }}</span>
         </div>
 
-        <p class="text" style="white-space: pre-wrap;">{{ $post->text }}</p>
+        <p class="text" style="white-space: pre-wrap;">{!! $post->html !!}</p>
 
         <div class="actions">
             <a class="like" onclick="event.preventDefault(); $('#like-form-{{ $post->id }}').submit();">

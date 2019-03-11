@@ -21,6 +21,7 @@ class PostController extends Controller
         ]);
 
         $post = Post::make($request->all());
+        $post->html = $post->text;
         $post->user_id = Auth::user()->getKey();
         $post->save();
 

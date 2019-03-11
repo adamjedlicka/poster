@@ -19,17 +19,17 @@ class NotifyFollowers
      */
     public function handle(PostCreated $event)
     {
-        $event->post->user->followers->each(function (User $follower) use ($event) {
+        $event->getPost()->user->followers->each(function (User $follower) use ($event) {
             foreach ($follower->unreadNotifications as $notification) {
                 if (
                     $notification->type == NewPostFromFollower::class
-                    && $notification->data['user']['id'] == $event->post->user->id
+                    && $notification->data['user']['id'] == $event->getPost()->user->id
                 ) {
                     return;
                 }
             }
 
-            $follower->notify(new NewPostFromFollower($event->post));
+            $follower->notify(new NewPostFromFollower($event->getPost()));
         });
     }
 }

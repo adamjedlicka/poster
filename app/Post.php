@@ -9,6 +9,7 @@ class Post extends Model
 {
     protected $fillable = [
         'text',
+        'html',
     ];
 
     public function user()
