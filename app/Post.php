@@ -22,6 +22,11 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'likes');
     }
 
+    public function topics()
+    {
+        return $this->belongsToMany(Topic::class);
+    }
+
     public function getLikeCountAttribute()
     {
         return Cache::remember("posts.$this->id.likeCount", now()->addHour(), function () {

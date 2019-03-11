@@ -10,8 +10,9 @@ class ProcessPostTopics
     public function handle(PostCreated $event)
     {
         $post = $event->getPost();
+        $topics = [];
 
-        $post->html = preg_replace_callback('/#\w+/', function ($match) {
+        $post->html = preg_replace_callback('/#\w+/', function ($match) use (&$topics) {
             $lowered = strtolower($match[0]);
 
             $topic = Topic::where('name', $lowered)->first();
@@ -22,6 +23,8 @@ class ProcessPostTopics
                 ]);
             }
 
+            $topics[] = $topic->getKey();
+
             return sprintf(
                 '<a href="%s">%s</a>',
                 route('topics.show', $topic),
@@ -30,5 +33,7 @@ class ProcessPostTopics
         }, $post->html);
 
         $post->save();
+
+        $post->topics()->sync($topics);
     }
 }

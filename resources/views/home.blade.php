@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-@include('posts/_index')
+<div class="ui segment">
+    @include('posts/_index')
+</div>
 
 @endsection
