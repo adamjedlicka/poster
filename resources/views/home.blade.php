@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="ui segment">
-    @include('posts/_index')
+    @include('posts._index')
 </div>
 
 @endsection

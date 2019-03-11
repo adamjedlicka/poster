@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function show(User $user)
     {
-        return view('users/detail', [
+        return view('users.detail', [
             'user' => $user,
             'posts' => $user->posts,
         ]);
@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users/edit', [
+        return view('users.edit', [
             'user' => $user,
         ]);
     }

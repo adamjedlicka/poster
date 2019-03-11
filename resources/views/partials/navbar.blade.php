@@ -29,7 +29,7 @@
                 {{ __('New post') }}
             </div>
             <div class="content">
-                @include('posts/_create')
+                @include('posts._create')
             </div>
         </div>
 
