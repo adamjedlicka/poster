@@ -3,21 +3,15 @@
 namespace App\Listeners;
 
 use App\User;
-use App\Events\PostCreating;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Events\PostCreated;
 
 class ProcessPostHandles
 {
-    /**
-     * Handle the event.
-     *
-     * @param  PostCreating  $event
-     * @return void
-     */
-    public function handle(PostCreating $event)
+    public function handle(PostCreated $event)
     {
-        $event->getPost()->html = preg_replace_callback('/@(\w+)/', function ($match) {
+        $post = $event->getPost();
+
+        $post->html = preg_replace_callback('/@(\w+)/', function ($match) {
             $user = User::where('handle', $match[1])->first();
 
             if ($user == null) {
@@ -29,6 +23,6 @@ class ProcessPostHandles
                 route('users.show', $user),
                 $match[0],
             );
-        }, $event->getPost()->html);
+        }, $post->html);
     }
 }

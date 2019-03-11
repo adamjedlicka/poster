@@ -3,21 +3,15 @@
 namespace App\Listeners;
 
 use App\Topic;
-use App\Events\PostCreating;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Events\PostCreated;
 
 class ProcessPostTopics
 {
-    /**
-     * Handle the event.
-     *
-     * @param  PostCreating  $event
-     * @return void
-     */
-    public function handle(PostCreating $event)
+    public function handle(PostCreated $event)
     {
-        $event->getPost()->html = preg_replace_callback('/#\w+/', function ($match) {
+        $post = $event->getPost();
+
+        $post->html = preg_replace_callback('/#\w+/', function ($match) {
             $lowered = strtolower($match[0]);
 
             $topic = Topic::where('name', $lowered)->first();
@@ -33,6 +27,8 @@ class ProcessPostTopics
                 route('topics.show', $topic),
                 $match[0],
             );
-        }, $event->getPost()->html);
+        }, $post->html);
+
+        $post->save();
     }
 }
