@@ -17,12 +17,14 @@ class ProcessPostTopics
      */
     public function handle(PostCreating $event)
     {
-        $event->getPost()->html = preg_replace_callback('/#(\w+)/', function ($match) {
-            $topic = Topic::where('name', $match[1])->first();
+        $event->getPost()->html = preg_replace_callback('/#\w+/', function ($match) {
+            $lowered = strtolower($match[0]);
+
+            $topic = Topic::where('name', $lowered)->first();
 
             if ($topic == null) {
                 $topic = Topic::create([
-                    'name' => $match[1],
+                    'name' => $lowered,
                 ]);
             }
 
