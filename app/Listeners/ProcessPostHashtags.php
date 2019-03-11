@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Topic;
 use App\Events\PostCreated;
 
-class ProcessPostTopics
+class ProcessPostHashtags
 {
     public function handle(PostCreated $event)
     {
