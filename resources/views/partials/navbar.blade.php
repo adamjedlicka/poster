@@ -1,7 +1,9 @@
 <div class="ui pointing menu">
     <div class="header item">{{ config('app.name') }}</div>
 
-    <a class="item {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}">{{ __('All posts') }}</a>
+    <a class="item {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}">{{ __('Posts') }}</a>
+
+    <a class="item {{ Route::is('topics.*') ? 'active' : '' }}" href="{{ route('topics.index') }}">{{ __('Topics') }}</a>
 
     <div class="right menu">
         <div class="item">

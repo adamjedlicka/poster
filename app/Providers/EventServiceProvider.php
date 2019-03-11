@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\PostCreated;
 use App\Events\PostCreating;
 use App\Listeners\NotifyFollowers;
+use App\Listeners\ProcessPostTopics;
 use App\Listeners\ProcessPostHandles;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -23,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         PostCreating::class => [
             ProcessPostHandles::class,
+            ProcessPostTopics::class,
         ],
         PostCreated::class => [
             NotifyFollowers::class,
