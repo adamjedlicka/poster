@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -23,7 +24,9 @@ class PostController extends Controller
         $post->user_id = Auth::user()->getKey();
         $post->save();
 
-        $post->likes()->attach(Auth::user());
+        Auth::user()->likes()->attach($post);
+
+        Cache::increment("users.$post->user_id.postCount");
 
         return redirect()->back();
     }
@@ -34,15 +37,21 @@ class PostController extends Controller
 
         $post->delete();
 
+        Cache::decrement("users.$post->user_id.postCount");
+
         return redirect()->back();
     }
 
     public function like(Post $post)
     {
-        if ($post->isLikedBy(Auth::id())) {
-            $post->likes()->detach(Auth::user());
+        if (Auth::user()->likes($post)) {
+            Auth::user()->likes()->detach($post);
+
+            Cache::decrement("posts.$post->id.likeCount");
         } else {
-            $post->likes()->attach(Auth::user());
+            Auth::user()->likes()->attach($post);
+
+            Cache::increment("posts.$post->id.likeCount");
         }
 
         return redirect()->back();

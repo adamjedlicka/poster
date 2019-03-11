@@ -2,16 +2,13 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     protected $fillable = [
         'text',
-    ];
-
-    protected $with = [
-        'likes',
     ];
 
     public function user()
@@ -24,8 +21,10 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'likes');
     }
 
-    public function isLikedBy($user)
+    public function getLikeCountAttribute()
     {
-        return $this->likes->find($user);
+        return Cache::remember("posts.$this->id.likeCount", now()->addHour(), function () {
+            return $this->likes()->count();
+        });
     }
 }

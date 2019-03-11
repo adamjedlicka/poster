@@ -17,7 +17,7 @@
 
         <div class="actions">
             <a class="like" onclick="event.preventDefault(); $('#like-form-{{ $post->id }}').submit();">
-                <i class="like icon {{ $post->isLikedBy(Auth::id()) ? 'red' : '' }}"></i> {{ $post->likes->count() }} {{ __('Likes') }}
+                <i class="like icon {{ Auth::user() && Auth::user()->likes($post) ? 'red' : '' }}"></i> {{ $post->likeCount }} {{ __('Likes') }}
             </a> @can('delete', $post)
             <a class="delete" onclick="event.preventDefault(); $('#delete-form-{{ $post->id }}').submit();">
                 <i class="trash icon"></i>

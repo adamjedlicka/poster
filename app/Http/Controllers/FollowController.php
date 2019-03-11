@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class FollowController extends Controller
 {
@@ -14,10 +15,14 @@ class FollowController extends Controller
 
     public function follow(User $user)
     {
-        if (Auth::user()->follows->find($user)) {
+        if (Auth::user()->follows($user)) {
             Auth::user()->follows()->detach($user);
+
+            Cache::decrement("users.$user->id.followerCount");
         } else {
             Auth::user()->follows()->attach($user);
+
+            Cache::increment("users.$user->id.followerCount");
         }
 
         return redirect()->back();

@@ -15,7 +15,7 @@
         @if(Auth::id() !== $user->getKey())
         <div class="ui vertical menu">
             <a href="{{ route('follow', $user) }}" onclick="event.preventDefault(); $('#follow-form').submit();" class="item">
-                @if($user->followers->find(Auth::user()))
+                @if(Auth::user()->follows($user))
                 Unfollow
                 @else
                 Follow
@@ -48,12 +48,12 @@
 
             <div class="ui label">
                 Followers
-                <div class="detail">{{ $user->followers->count() }}</div>
+                <div class="detail">{{ $user->followerCount }}</div>
             </div>
 
             <div class="ui label">
                 Posts
-                <div class="detail">{{ $user->posts->count() }}</div>
+                <div class="detail">{{ $user->postCount }}</div>
             </div>
         </div>
 
