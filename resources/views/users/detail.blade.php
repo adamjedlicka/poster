@@ -28,7 +28,7 @@
             @csrf
         </form>
 
-        <form id="follow-form" action="{{ route('follow', $user) }}" method="POST" style="display: none;">
+        <form id="follow-form" action="{{ route('follow.user', $user) }}" method="POST" style="display: none;">
             @csrf
         </form>
     </div>
