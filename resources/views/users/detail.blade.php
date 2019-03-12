@@ -14,7 +14,7 @@
 
         @if(Auth::id() !== $user->getKey())
         <div class="ui vertical menu">
-            <a href="{{ route('follow', $user) }}" onclick="event.preventDefault(); $('#follow-form').submit();" class="item">
+            <a href="{{ route('follow.user', $user) }}" onclick="event.preventDefault(); $('#follow-form').submit();" class="item">
                 @if(Auth::user()->follows($user))
                 Unfollow
                 @else

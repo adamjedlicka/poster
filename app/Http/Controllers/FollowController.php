@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use App\Topic;
 
 class FollowController extends Controller
 {
@@ -13,7 +14,7 @@ class FollowController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function follow(User $user)
+    public function followUser(User $user)
     {
         if (Auth::user()->follows($user)) {
             Auth::user()->follows()->detach($user);
@@ -23,6 +24,21 @@ class FollowController extends Controller
             Auth::user()->follows()->attach($user);
 
             Cache::increment("users.$user->id.followerCount");
+        }
+
+        return redirect()->back();
+    }
+
+    public function followTopic(Topic $topic)
+    {
+        if (Auth::user()->followsTopic($topic)) {
+            Auth::user()->followsTopic()->detach($topic);
+
+            Cache::decrement("topics.$topic->id.followerCount");
+        } else {
+            Auth::user()->followsTopic()->attach($topic);
+
+            Cache::increment("topics.$topic->id.followerCount");
         }
 
         return redirect()->back();

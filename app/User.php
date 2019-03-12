@@ -57,6 +57,15 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
+    public function followsTopic(? Topic $topic = null)
+    {
+        if ($topic != null) {
+            return $this->followsTopic->find($topic);
+        }
+
+        return $this->belongsToMany(Topic::class, 'topic_followers');
+    }
+
     public function getAvatarAttribute()
     {
         return $this->avatar_path

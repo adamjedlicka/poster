@@ -26,6 +26,7 @@ Route::patch('/users/{user}', 'UserController@update')->name('users.update');
 Route::get('/topics', 'TopicController@index')->name('topics.index');
 Route::get('/topics/{topic}', 'TopicController@show')->name('topics.show');
 
-Route::post('/follow/{user}', 'FollowController@follow')->name('follow');
+Route::post('/follow/user/{user}', 'FollowController@followUser')->name('follow.user');
+Route::post('/follow/topic/{topic}', 'FollowController@followTopic')->name('follow.topic');
 
 Route::post('/notifications/read', 'NotificationController@readAll')->name('notifications.readAll');
