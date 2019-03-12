@@ -28,6 +28,15 @@ class NotifyTopicFollowers
                     return;
                 }
 
+                foreach ($user->unreadNotifications as $notification) {
+                    if (
+                        $notification->type == NewPostInFollowedTopic::class
+                        && $notification->data['topic']['id'] == $topic->getKey()
+                    ) {
+                        return;
+                    }
+                }
+
                 $user->notify(new NewPostInFollowedTopic($post, $topic));
             });
         });
