@@ -11,7 +11,7 @@ class HomeController extends Controller
         return view('home', [
             'posts' => Post::orderBy('created_at', 'desc')
                 ->with('user')
-                ->get(),
+                ->paginate(),
         ]);
     }
 }

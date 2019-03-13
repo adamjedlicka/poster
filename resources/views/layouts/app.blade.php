@@ -22,13 +22,15 @@
 </head>
 <body>
 
-    <div id="app" class="ui container">
+    <div id="app" class="ui container" style="padding-bottom: 1em">
 
-        @include('partials/navbar')
+        <div class="column">
+            @include('partials/navbar')
 
-        <main id="content">
-            @yield('content')
-        </main>
+            <main id="content">
+                @yield('content')
+            </main>
+        </div>
 
     </div>
 

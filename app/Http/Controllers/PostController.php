@@ -20,10 +20,7 @@ class PostController extends Controller
             'text' => ['required', 'string'],
         ]);
 
-        $post = Post::make($request->all());
-        $post->html = $post->text;
-        $post->user_id = Auth::user()->getKey();
-        $post->save();
+        $post = Post::create($request->all());
 
         Auth::user()->likes()->attach($post);
 
