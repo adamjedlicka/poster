@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\SortScope;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,13 @@ class Post extends Model
         'text',
         'html',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new SortScope);
+    }
 
     public function user()
     {

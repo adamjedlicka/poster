@@ -20,6 +20,7 @@ class TopicController extends Controller
         return view('topics.show', [
             'topic' => $topic,
             'posts' => $topic->posts()->paginate(10),
+            'title' => 'Posts in topic ' . $topic->name,
         ]);
     }
 }

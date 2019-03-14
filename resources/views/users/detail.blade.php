@@ -62,7 +62,8 @@
 </div>
 
 <div class="ui segment">
-    <h2 class="ui header">{{ $user->first_name }}'s posts</h2>
-    @include('posts._index')
+    @include('posts._index', [
+        'title' => $user->first_name . '\'s posts',
+    ])
 </div>
 @endsection
