@@ -13,6 +13,10 @@ class Post extends Model
         'html',
     ];
 
+    protected $with = [
+        'user',
+    ];
+
     public static function boot()
     {
         parent::boot();
