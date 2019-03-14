@@ -1,17 +1,7 @@
 {
     "emmet.triggerExpansionOnTab": true,
-    "blade.format.enable": true,
     "emmet.includeLanguages": {
         "blade": "html"
-    },
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "vendor": true,
-        "node_modules": true
     },
     "php.suggest.basic": false
 }
