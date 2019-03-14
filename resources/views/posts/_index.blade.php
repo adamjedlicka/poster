@@ -25,6 +25,11 @@
                 @endforeach
             </div>
 
+        </div>
+    </div>
+
+    <div class="ui three column centered row">
+        <div class="ui column center aligned">
             {{ $posts->links() }}
         </div>
     </div>
