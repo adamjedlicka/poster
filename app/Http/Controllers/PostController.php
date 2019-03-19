@@ -22,8 +22,6 @@ class PostController extends Controller
 
         $post = Post::create($request->all());
 
-        Auth::user()->likes()->attach($post);
-
         Cache::increment("users.$post->user_id.postCount");
 
         return redirect()->back();

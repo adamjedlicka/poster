@@ -22,6 +22,8 @@ class PostObserver
 
     public function created(Post $post)
     {
+        Auth::user()->likes()->attach($post);
+
         PostCreated::dispatch($post);
     }
 }
