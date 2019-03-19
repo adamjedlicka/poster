@@ -3,6 +3,7 @@
 
 <div class="ui segment grid">
     <div class="ui right very close rail">
+        @auth
         <div class="ui vertical menu">
             <a href="{{ route('follow.topic', $topic) }}" onclick="event.preventDefault(); $('#follow-form').submit();" class="item">
                 @if(Auth::user()->followsTopic($topic))
@@ -12,6 +13,7 @@
                 @endif
             </a>
         </div>
+        @endauth
 
         <form id="follow-form" action="{{ route('follow.topic', $topic) }}" method="POST" style="display: none;">
             @csrf
