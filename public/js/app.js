@@ -31585,6 +31585,9 @@ var app = new Vue({
   el: '#app'
 });
 $('.ui.dropdown').dropdown();
+$('.message .close').on('click', function () {
+  $(this).closest('.message').transition('fade');
+});
 
 /***/ }),
 
@@ -31707,8 +31710,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/adam/Code/web/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/adam/Code/web/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/adam/Code/poster/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/adam/Code/poster/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -24,7 +24,11 @@ class PostController extends Controller
 
         Cache::increment("users.$post->user_id.postCount");
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('message', [
+                'title' => 'Success',
+                'text' => 'New post created successfully',
+            ]);
     }
 
     public function destroy(Post $post)
@@ -35,7 +39,11 @@ class PostController extends Controller
 
         Cache::decrement("users.$post->user_id.postCount");
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('message', [
+                'title' => 'Success',
+                'text' => 'Post deleted successfully',
+            ]);
     }
 
     public function like(Post $post)

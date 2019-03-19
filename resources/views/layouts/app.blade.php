@@ -32,6 +32,16 @@
             </main>
         </div>
 
+        @if(Session::has('message'))
+        <div class="ui floating message" style="position: fixed; top: 0.5em; right: 1em;">
+            <i class="close icon"></i>
+            <div class="header">
+                {{ Session::get('message')['title'] }}
+            </div>
+            <p>{{ Session::get('message')['text'] }}</p>
+        </div>
+        @endif
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
