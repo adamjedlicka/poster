@@ -33,8 +33,7 @@
         </div>
 
         @if(Session::has('message'))
-        <div class="ui floating message" style="position: fixed; top: 0.5em; right: 1em;">
-            <i class="close icon"></i>
+        <div class="ui positive message" style="position: fixed; top: 0.5em; right: 1em;">
             <div class="header">
                 {{ Session::get('message')['title'] }}
             </div>
