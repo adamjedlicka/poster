@@ -6,12 +6,12 @@
     <a class="item {{ Route::is('topics.*') ? 'active' : '' }}" href="{{ route('topics.index') }}">{{ __('Topics') }}</a>
 
     <div class="right menu">
-        <div class="item">
+        {{-- <div class="item">
             <div class="ui transparent icon input">
                 <input type="text" placeholder="Search...">
                 <i class="search link icon"></i>
             </div>
-        </div>
+        </div> --}}
 
         @guest
         <a href="{{ route('login') }}" class="ui item {{ Route::is('login') ? 'active' : '' }}">{{ __('Login') }}</a>
