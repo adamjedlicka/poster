@@ -18,6 +18,6 @@ class EscapePostHtml
     {
         $post = $event->getPost();
 
-        $post->html = htmlspecialchars($post->html);
+        $post->html = htmlspecialchars($post->text);
     }
 }

@@ -11,8 +11,6 @@ class PostObserver
 {
     public function creating(Post $post)
     {
-        $post->html = $post->text;
-
         if ($post->user_id == null) {
             $post->user_id = Auth::id();
         }
