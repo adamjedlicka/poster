@@ -21,7 +21,7 @@ class ProcessPostHandles
             return sprintf(
                 '<a href="%s">%s</a>',
                 route('users.show', $user),
-                $match[0],
+                $match[0]
             );
         }, $post->html);
     }

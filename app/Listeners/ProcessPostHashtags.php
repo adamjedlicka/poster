@@ -28,7 +28,7 @@ class ProcessPostHashtags
             return sprintf(
                 '<a href="%s">%s</a>',
                 route('topics.show', $topic),
-                $match[0],
+                $match[0]
             );
         }, $post->html);
 
