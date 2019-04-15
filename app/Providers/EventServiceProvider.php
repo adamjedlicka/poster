@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\PostCreated;
+use App\Events\PostCreating;
+use App\Listeners\EscapePostHtml;
 use App\Listeners\NotifyFollowers;
 use App\Listeners\ProcessPostHandles;
 use App\Listeners\ProcessPostHashtags;
@@ -17,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        PostCreating::class => [
+            EscapePostHtml::class,
+        ],
         PostCreated::class => [
             ProcessPostHandles::class,
             ProcessPostHashtags::class,
