@@ -20,6 +20,11 @@
                 Followers
                 <div class="detail">{{ $topic->followerCount }}</div>
             </div>
+
+            <div class="ui label">
+                Posts
+                <div class="detail">{{ $topic->posts()->count() }}</div>
+            </div>
         </div>
     </div>
 </div>
