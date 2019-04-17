@@ -6,6 +6,7 @@ use App\Events\PostCreated;
 use App\Events\PostCreating;
 use App\Listeners\EscapePostHtml;
 use App\Listeners\NotifyFollowers;
+use App\Listeners\ProcessPostUrls;
 use App\Listeners\ProcessPostHandles;
 use App\Listeners\ProcessPostHashtags;
 use App\Listeners\NotifyTopicFollowers;
@@ -23,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
             EscapePostHtml::class,
         ],
         PostCreated::class => [
+            ProcessPostUrls::class,
             ProcessPostHandles::class,
             ProcessPostHashtags::class,
             NotifyFollowers::class,
