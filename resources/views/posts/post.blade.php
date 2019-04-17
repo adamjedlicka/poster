@@ -21,10 +21,6 @@
             @can('delete', $post)
             <delete-post id="{{ $post->id }}"></delete-post>
             @endcan
-
-            <form id="like-form-{{ $post->id }}" action="{{ route('posts.like', $post) }}" method="POST" style="display: none;">
-                @csrf
-            </form>
         </div>
     </div>
 </div>

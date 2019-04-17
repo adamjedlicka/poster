@@ -19,6 +19,10 @@ const app = new Vue({
     el: '#app'
 });
 
+$('#new-post-btn').on('click', function () {
+    $('#new-post-modal').modal('show');
+});
+
 $('.ui.dropdown').dropdown();
 
 $('.message .close').on('click', function () {

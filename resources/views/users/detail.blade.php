@@ -9,29 +9,15 @@
                     <a href="{{ route('users.edit', $user) }}" class="item">Edit profile</a>
                 @endcan
 
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); $('#logout-form').submit();" class="item">Logout</a>
+                <post-button url="{{ route('logout') }}">Logout</post-button>
             </div>
         @endif
 
         @auth @if(Auth::id() !== $user->getKey())
             <div class="ui vertical menu">
-                <a href="{{ route('follow.user', $user) }}" onclick="event.preventDefault(); $('#follow-form').submit();" class="item">
-                    @if(Auth::user()->follows($user))
-                        Unfollow
-                    @else
-                        Follow
-                    @endif
-                </a>
+                <follow-button url="{{ route('follow.user', $user) }}" follows="{{ Auth::user()->follows($user) }}"></follow-button>
             </div>
         @endif @endauth
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
-
-        <form id="follow-form" action="{{ route('follow.user', $user) }}" method="POST" style="display: none;">
-            @csrf
-        </form>
     </div>
 
     <div class="ui row">

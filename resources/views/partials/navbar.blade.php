@@ -18,7 +18,7 @@
         <a href="{{ route('register') }}" class="ui item {{ Route::is('register') ? 'active' : '' }}">{{ __('Register') }}</a>
         @else
 
-        <a class="item" onclick="event.preventDefault(); $('#new-post-modal').modal('show')">
+        <a id="new-post-btn" class="item">
             <i class="green plus icon"></i>
             {{ __('New post') }}
         </a>
@@ -43,11 +43,7 @@
 
                 <div class="ui divider"></div>
 
-                <a href="{{ route('notifications.readAll') }}" onclick="event.preventDefault(); $('#notification-form').submit();" class="ui item">Mark notifications as read</a>
-
-                <form id="notification-form" action="{{ route('notifications.readAll') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                <post-button url="{{ route('notifications.readAll') }}" class="ui item">Mark notifications as read</post-button>
             </div>
         </div>
         @endif

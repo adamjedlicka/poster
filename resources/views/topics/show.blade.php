@@ -5,19 +5,9 @@
     <div class="ui right very close rail">
         @auth
         <div class="ui vertical menu">
-            <a href="{{ route('follow.topic', $topic) }}" onclick="event.preventDefault(); $('#follow-form').submit();" class="item">
-                @if(Auth::user()->followsTopic($topic))
-                Unfollow
-                @else
-                Follow
-                @endif
-            </a>
+            <follow-button url="{{ route('follow.topic', $topic) }}" follows="{{ Auth::user()->followsTopic($topic) }}"></follow-button>
         </div>
         @endauth
-
-        <form id="follow-form" action="{{ route('follow.topic', $topic) }}" method="POST" style="display: none;">
-            @csrf
-        </form>
     </div>
 
     <div class="ui row">

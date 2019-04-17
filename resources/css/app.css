@@ -5,3 +5,7 @@ body {
 #app {
     margin-top: 1em;
 }
+
+[v-cloak] {
+    display: none;
+}
