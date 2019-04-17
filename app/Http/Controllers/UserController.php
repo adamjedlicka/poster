@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
@@ -11,7 +12,7 @@ class UserController extends Controller
     {
         return view('users.detail', [
             'user' => $user,
-            'posts' => $user->posts()->paginate(10),
+            'posts' => $user->posts()->paginate(10)->appends(Input::except('page')),
         ]);
     }
 

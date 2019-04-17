@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Topic;
+use Illuminate\Support\Facades\Input;
 
 class TopicController extends Controller
 {
@@ -19,7 +20,7 @@ class TopicController extends Controller
     {
         return view('topics.show', [
             'topic' => $topic,
-            'posts' => $topic->posts()->paginate(10),
+            'posts' => $topic->posts()->paginate(10)->appends(Input::except('page')),
             'title' => 'Posts in topic ' . $topic->name,
         ]);
     }
