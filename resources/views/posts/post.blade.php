@@ -19,14 +19,7 @@
             <like-post id="{{ $post->id }}" liked="{{ Auth::user() && Auth::user()->likes($post) }}" count="{{ $post->likeCount }}"></like-post>
 
             @can('delete', $post)
-            <a class="delete" onclick="event.preventDefault(); $('#delete-form-{{ $post->id }}').submit();">
-                <i class="trash icon"></i>
-                {{ __('Delete') }}
-            </a>
-
-            <form id="delete-form-{{ $post->id }}" action="{{ route('posts.destroy', $post) }}" method="POST" style="display: none;">
-                @csrf @method('DELETE')
-            </form>
+            <delete-post id="{{ $post->id }}"></delete-post>
             @endcan
 
             <form id="like-form-{{ $post->id }}" action="{{ route('posts.like', $post) }}" method="POST" style="display: none;">

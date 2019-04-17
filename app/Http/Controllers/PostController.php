@@ -6,6 +6,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -39,11 +40,12 @@ class PostController extends Controller
 
         Cache::decrement("users.$post->user_id.postCount");
 
-        return redirect()->back()
-            ->with('message', [
-                'title' => 'Success',
-                'text' => 'Post deleted successfully',
-            ]);
+        Session::flash('message', [
+            'title' => 'Success',
+            'text' => 'Post deleted successfully',
+        ]);
+
+        return response(200);
     }
 
     public function like(Post $post)
@@ -58,6 +60,6 @@ class PostController extends Controller
             Cache::increment("posts.$post->id.likeCount");
         }
 
-        return redirect()->back();
+        return response(200);
     }
 }
