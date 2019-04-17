@@ -11,11 +11,8 @@
     },
     "dependencies": {
         "axios": "^0.18.0",
-        "bootstrap": "^4.3.1",
         "cross-env": "^5.1",
-        "jquery": "^3.3.1",
-        "laravel-mix": "^4.0.7",
-        "popper.js": "^1.14.7",
+        "laravel-mix": "^4.0.15",
         "sass": "^1.15.2",
         "vue": "^2.5.17"
     },
