@@ -6,6 +6,7 @@ use App\Post;
 use App\Events\PostCreated;
 use App\Events\PostCreating;
 use Illuminate\Support\Facades\Auth;
+use App\Events\PostDeleting;
 
 class PostObserver
 {
@@ -23,5 +24,10 @@ class PostObserver
         $post->user->likes()->attach($post);
 
         PostCreated::dispatch($post);
+    }
+
+    public function deleting(Post $post)
+    {
+        PostDeleting::dispatch($post);
     }
 }

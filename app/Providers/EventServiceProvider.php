@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Events\PostCreated;
 use App\Events\PostCreating;
+use App\Events\PostDeleting;
 use App\Listeners\EscapePostHtml;
 use App\Listeners\NotifyFollowers;
 use App\Listeners\ProcessPostUrls;
+use App\Listeners\RemoveEmptyTopics;
 use App\Listeners\ProcessPostHandles;
 use App\Listeners\ProcessPostHashtags;
 use App\Listeners\NotifyTopicFollowers;
@@ -29,6 +31,9 @@ class EventServiceProvider extends ServiceProvider
             ProcessPostHashtags::class,
             NotifyFollowers::class,
             NotifyTopicFollowers::class,
+        ],
+        PostDeleting::class => [
+            RemoveEmptyTopics::class,
         ]
     ];
 
