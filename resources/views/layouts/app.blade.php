@@ -32,8 +32,6 @@
             </main>
         </div>
 
-        <example-component></example-component>
-
         @if(Session::has('message'))
         <div class="ui positive message" style="position: fixed; top: 0.5em; right: 1em;">
             <div class="header">
