@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
 
     <div id="app" class="ui container" style="padding-bottom: 1em">
@@ -30,6 +32,16 @@
             <main id="content">
                 @yield('content')
             </main>
+        </div>
+
+        <div id="new-post-modal" class="ui modal">
+            <i class="close icon"></i>
+            <div class="header">
+                {{ __('New post') }}
+            </div>
+            <div class="content">
+                @include('posts._create')
+            </div>
         </div>
 
         @if(Session::has('message'))
@@ -46,4 +58,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
 </body>
+
 </html>

@@ -21,16 +21,6 @@
             New post
         </a>
 
-        <div id="new-post-modal" class="ui modal">
-            <i class="close icon"></i>
-            <div class="header">
-                {{ __('New post') }}
-            </div>
-            <div class="content">
-                @include('posts._create')
-            </div>
-        </div>
-
         @if(Auth::user()->unreadNotifications->count())
         <div class="ui floating dropdown item">
             <i class="bell outline icon"></i>
