@@ -32,7 +32,7 @@ php artisan down
 git checkout $1
 
 # Update and install back-end dependencies
-composer install --no-dev
+composer install
 
 # Update, install and compile front-end assets
 npm install
