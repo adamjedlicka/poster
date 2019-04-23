@@ -1,12 +1,12 @@
 <div class="ui grid">
 
     <div class="ui row">
-        <div class="ui twelve wide column">
+        <div class="ui ten wide column">
             <h2 class="ui header">{{ $title }}</h2>
         </div>
 
-        <div class="ui right floated right aligned four wide column">
-            <div class="ui selection dropdown floated right">
+        <div class="ui right aligned six wide column">
+            <div class="ui dropdown floated right">
                 <div class="text">Sort by</div>
                 <i class="dropdown icon"></i>
                 <div class="menu">
@@ -24,11 +24,10 @@
                 @include('posts.post')
                 @endforeach
             </div>
-
         </div>
     </div>
 
-    <div class="ui three column centered row">
+    <div class="ui row">
         <div class="ui column center aligned">
             {{ $posts->links() }}
         </div>

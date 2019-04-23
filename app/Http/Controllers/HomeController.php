@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'posts' => Post::paginate(10)->appends(Input::except('page')),
+            'posts' => Post::paginate(10)->onEachSide(1)->appends(Input::except('page')),
             'title' => 'All posts',
         ]);
     }

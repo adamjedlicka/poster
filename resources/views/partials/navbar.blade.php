@@ -1,5 +1,21 @@
 <div class="ui pointing menu">
-    <div class="header item">{{ config('app.name') }}</div>
+    <div class="ui floating dropdown item">
+        <i class="bars icon"></i>
+        <strong>
+            {{ config('app.name') }}
+        </strong>
+        @auth
+        <div class="menu">
+            <a id="new-post-btn" class="ui item">
+                New post
+            </a>
+            <a href="{{ route('users.show', Auth::user()) }}" class="ui item">
+                Show profile
+            </a>
+            <post-button class="ui item" url="{{ route('logout') }}">Logout</post-button>
+        </div>
+        @endauth
+    </div>
 
     <a class="item {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}">{{ __('Posts') }}</a>
 
@@ -18,10 +34,6 @@
         <a href="{{ route('register') }}" class="ui item {{ Route::is('register') ? 'active' : '' }}">{{ __('Register') }}</a>
         @else
 
-        <a id="new-post-btn" class="item">
-            <i class="green plus icon"></i>
-            {{ __('New post') }}
-        </a>
 
         <div id="new-post-modal" class="ui modal">
             <i class="close icon"></i>
@@ -48,11 +60,6 @@
         </div>
         @endif
 
-        <a href="{{ route('users.show', Auth::user()) }}" class="ui item">
-            <strong>
-                {{ '@' }}{{ Auth::user()->handle }}
-            </strong>
-        </a>
         @endguest
     </div>
 </div>
