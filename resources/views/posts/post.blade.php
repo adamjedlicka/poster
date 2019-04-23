@@ -10,7 +10,7 @@
 
         <div class="metadata">
             <span class="handle">{{ '@' }}{{ $post->user->handle }}</span>
-            <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+            <span class="date" title="{{ $post->created_at->format('d.m.Y H:i') }}">{{ $post->created_at->diffForHumans() }}</span>
         </div>
 
         <p class="text" style="white-space: pre-wrap;">{!! $post->html !!}</p>
