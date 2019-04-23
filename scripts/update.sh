@@ -30,6 +30,7 @@ php artisan down
 
 # Checkout requested version
 git checkout $1
+git pull
 
 # Update and install back-end dependencies
 composer install
